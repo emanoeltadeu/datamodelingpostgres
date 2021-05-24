@@ -1,5 +1,5 @@
 # datamodelingpostgres
-## Project 1: Data Modeling with Postgres from the Data Engineer Nanodegree Program From Udacity
+## Project 1: Data Modeling with Postgres from the Udacity Data Engineer Nanodegree Program
 
 
 ### The schema.sql file contains the entire SQL statement for creating tables and foreign keys.
