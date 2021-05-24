@@ -4,7 +4,15 @@ import psycopg2
 import pandas as pd
 from sql_queries import *
 
+"""
+    This procedure processes a song file whose filepath has been provided as an arugment.
+    It extracts the song information in order to store it into the songs table.
+    Then it extracts the artist information in order to store it into the artists table.
 
+    INPUTS: 
+    * cur the cursor variable
+    * filepath the file path to the song file
+"""
 def process_song_file(cur, filepath):
     # open song file
     df = pd.read_json(filepath, lines=True)
@@ -17,7 +25,15 @@ def process_song_file(cur, filepath):
     artist_data = list(df[['artist_id', 'artist_name', 'artist_location', 'artist_latitude', 'artist_longitude']].values[0])
     cur.execute(artist_table_insert, artist_data)
 
+"""
+    This procedure processes a log file whose filepath has been provided as an arugment.
+    It extracts the log information in order to store it into tables
+    Then it extracts information in order to store it into the following tables: time, user, songplay
 
+    INPUTS: 
+    * cur the cursor variable
+    * filepath the file path to the song file
+"""
 def process_log_file(cur, filepath):
     # open log file
     df = pd.read_json(filepath, lines=True)
@@ -61,6 +77,16 @@ def process_log_file(cur, filepath):
         cur.execute(songplay_table_insert, songplay_data)
 
 
+"""
+    This procedure processes a log file/song file whose filepath has been provided as an arugment.
+    It execute te suit funcion for the func argument
+
+    INPUTS: 
+    * cur the cursor variable
+    * conn the connection variable
+    * filepath the file path to the song file
+    * func the function to be executed
+"""
 def process_data(cur, conn, filepath, func):
     # get all files matching extension from directory
     all_files = []
@@ -79,7 +105,7 @@ def process_data(cur, conn, filepath, func):
         conn.commit()
         print('{}/{} files processed.'.format(i, num_files))
 
-
+        
 def main():
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
@@ -88,7 +114,6 @@ def main():
     process_data(cur, conn, filepath='data/log_data', func=process_log_file)
 
     conn.close()
-
 
 if __name__ == "__main__":
     main()
