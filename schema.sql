@@ -31,9 +31,7 @@ CREATE TABLE IF NOT EXISTS songplays (
         location VARCHAR,
         latitude FLOAT,
         longitude FLOAT);
-       
-   
-   
+
        CREATE TABLE IF NOT EXISTS time (
         start_time BIGINT PRIMARY KEY,
         hour INT,
@@ -45,6 +43,7 @@ CREATE TABLE IF NOT EXISTS songplays (
     );
     
 
+--Adding foreign keys to songplays table
 ALTER TABLE sparkifydb.songplays DROP CONSTRAINT IF EXISTS users_fk;
 ALTER TABLE sparkifydb.songplays ADD CONSTRAINT users_fk FOREIGN KEY (user_id) REFERENCES sparkifydb.users(user_id);
 
@@ -56,7 +55,3 @@ ALTER TABLE sparkifydb.songplays ADD CONSTRAINT time_fk FOREIGN KEY (start_time)
 
 ALTER TABLE sparkifydb.songplays DROP CONSTRAINT IF EXISTS artist_fk;
 ALTER TABLE sparkifydb.songplays ADD CONSTRAINT artist_fk FOREIGN KEY (artist_id) REFERENCES sparkifydb.artists(artist_id);
-
-   
-   
-   
