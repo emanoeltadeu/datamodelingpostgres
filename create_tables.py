@@ -52,23 +52,16 @@ def create_tables(cur, conn):
 def main():
     """
     - Drops (if exists) and Creates the sparkify database. 
-    
-    - Establishes connection with the sparkify database and gets
-    cursor to it.  
-    
+    - Establishes connection with the sparkify database and gets cursor to it.  
     - Drops all the tables.  
-    
-    - Creates all tables needed. 
-    
+    - Creates all tables needed.     
     - Finally, closes the connection. 
     """
-    cur, conn = create_database()
     
+    cur, conn = create_database()
     drop_tables(cur, conn)
     create_tables(cur, conn)
-
     conn.close()
-
 
 if __name__ == "__main__":
     main()
