@@ -1,4 +1,4 @@
-# datamodelingpostgres
+# udacity-data-eng-project1
 ## Project 1: Data Modeling with Postgres from the Udacity Data Engineer Nanodegree Program
 
 
